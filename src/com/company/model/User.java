@@ -2,7 +2,8 @@ package com.company.model;
 
 import com.company.model.gender.Gender;
 
-public class User {
+public class User  {
+
     private Integer ID;
     private String name;
     private Integer age;
@@ -26,7 +27,7 @@ public class User {
         return ID;
     }
 
-    public void setID(Integer ID) {
+    public void setID() {
         this.ID = ID;
     }
 
@@ -56,6 +57,11 @@ public class User {
 
     @Override
     public String toString() {
-        return "User " + " ID= " + ID + ", name = " + name  + " , age = " + age + ", gender = " + gender ;
+        return "User{" +
+                "ID=" + ID +
+                ", name='" + name + '\'' +
+                ", age=" + age +
+                ", gender=" + gender +
+                '}';
     }
 }

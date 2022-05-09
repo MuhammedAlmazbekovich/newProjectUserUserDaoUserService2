@@ -5,13 +5,11 @@ import com.company.model.User;
 import com.company.model.gender.Gender;
 import com.company.service.impl.UserServiceImpl;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class Main {
 
     public static void main(String[] args) {
-
         List<User> userList = new ArrayList<>();
         UserDao userDao = new UserDao(userList);
         UserServiceImpl UsersService = new UserServiceImpl(userDao);
@@ -26,13 +24,15 @@ public class Main {
 
         UsersService.addUser(new User(4,"Atambaev",66,Gender.MALE));
 
-        System.out.println(UsersService.findUserById(9).getName());
+        System.out.println(UsersService.findUserById(1));
         System.out.println("----------------------------------------------------------------------------------");
         System.out.println(UsersService.getAllUsers());
         System.out.println("----------------------------------------------------------------------------------");
         System.out.println(UsersService.deleteUserById(2));
         System.out.println("----------------------------------------------------------------------------------");
         System.out.println(UsersService.getAllUsers());
+
+
 
     }
 }

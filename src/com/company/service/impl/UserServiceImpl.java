@@ -4,10 +4,9 @@ import com.company.dao.UserDao;
 import com.company.model.User;
 import com.company.service.UserService;
 
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.util.List;
+import java.util.*;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class UserServiceImpl implements UserService {
     static UserDao userDao;
@@ -18,40 +17,32 @@ public class UserServiceImpl implements UserService {
 
 
     @Override
-    public void addUser(User user) {
-        userDao.users.add(user);
+    public int addUser(User user) {
+        userDao.getUsers().add(user);
 
+
+        return 0;
     }
 
 
     @Override
     public List<User> getAllUsers() {
-        return userDao.users;
+        return userDao.getUsers();
     }
 
 
     @Override
-    public Boolean deleteUserById(Integer ID) {
-        return userDao.users.removeIf(mUser -> mUser.getID() == ID);
+    public boolean deleteUserById(Integer ID) {
+        return userDao.getUsers().removeIf(mUser -> mUser.getID() == ID);
     }
 
     @Override
-    public User findUserById(Integer ID) {
-        User user = new User();
-        for (User newUser : userDao.users) {
-            try {
-                if (newUser.getID() == ID) {
-                    user = newUser;
-                } else {
-                    throw new RuntimeException();
-                }
-
-            }catch (RuntimeException E){
-
-            }
-        }
-        System.out.println("User with ID = " + ID + " was not found");
-
+    public User findUserById  (Integer ID) {
+        User user;
+        List<User> userList = new ArrayList<>();
+        user  = userDao.getUsers().stream().filter(x -> x.getID() == ID).findFirst().orElse(null);
         return user;
     }
+
 }
+
